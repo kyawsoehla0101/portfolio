@@ -1,0 +1,14 @@
+<section id="hero" class="d-flex flex-column justify-content-center align-items-center">
+    <div class="hero-container px-3" data-aos="fade-in">
+      <h1>{{hero.name}}</h1>
+      <p>
+        I'm
+        <span
+          class="typed"
+          data-typed-items="
+          {% for typing in hero.typing.all %}{{typing}},{% endfor %}"
+        ></span>
+      </p>
+      <p><i>{{hero.description.html|safe}}</i></p>
+    </div>
+  </section>
