@@ -2,6 +2,7 @@
     <div class="container">
       <div class="section-title">
         <h2>Blogs</h2>
+        
         {% comment %} <p>
           Magnam dolores commodi suscipit. Necessitatibus eius consequatur
           ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam
@@ -12,24 +13,23 @@
 
       <div class="row">
         {% for blog in blogs %}
-        <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up">
+        <div class="col-lg-3 col-md-6 icon-box" data-aos="fade-up">
           <div
             style="
               background-color: #1d1d1d;
-              border-top: 1px solid red;
-              border-bottom: 1px solid #fd2155;
+              border-top: 2px solid {{blog.category.color_code}} ;
             "
             class="p-3"
           >
             <div>
-              <h6 style="color: #fd2155">{{blog.category}}</h6>
+              <h6 style="color: {{blog.category.color_code}};letter-spacing:0.2rem;">{{blog.category}}</h6>
               <p class="py-1"><a href="{% url 'detail' blog.slug %}" class="text-white blog-title">{{blog.title | truncatechars:50}}</a></p>
-              <p style="color: #a7a7a7">{{blog.short_content.html|safe}}</p>
-              <img
+              <p class="text-white">{{blog.short_content.html|safe}}</p>
+              <div style="max-height:200px;overflow:hidden;"><img
                 src="{{blog.image.url}}"
                 class="img-fluid"
                 alt=""
-              />
+              /></div>
             </div>
           </div>
         </div>

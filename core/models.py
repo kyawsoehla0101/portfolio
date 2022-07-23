@@ -65,6 +65,7 @@ class Contact(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
+    color_code = models.CharField(max_length=100,null=True,blank=True)
     slug = models.SlugField(
             default='',
             editable=False,

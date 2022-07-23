@@ -6,7 +6,7 @@ def home(request):
     contact = Contact.objects.first()
     hero = Hero.objects.first()
     skills = Skill.objects.all()
-    blogs = Blog.objects.all()
+    blogs = Blog.objects.all()[:8]
     gallery = Gallery.objects.all()
     years = Year.objects.all()
     context = {"about":about,'contact':contact,'skills':skills,'hero':hero,'blogs':blogs,'gallery':gallery,'years':years}

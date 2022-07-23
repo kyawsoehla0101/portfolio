@@ -297,6 +297,8 @@ p,span,li,a,div,i {
 section {
   padding: 60px 0;
   overflow: hidden;
+  background-color: #061222 !important;
+  color: white;
 }
 
 .section-bg {
@@ -313,7 +315,7 @@ section {
   margin-bottom: 20px;
   padding-bottom: 20px;
   position: relative;
-  color: #173b6c;
+  color: #37b3ed;
 }
 
 .section-title h2::after {
@@ -434,7 +436,7 @@ section {
   display: block;
   font-weight: 600;
   font-family: "Poppins", sans-serif;
-  color: #050d18;
+  color: #e8edf3;
 }
 
 .skills .progress .skill .val {
@@ -837,9 +839,10 @@ section {
 
 .contact .info {
   padding: 30px;
-  background: #fff;
+  background: #1d1d1d;
   width: 100%;
-  box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 0 24px 0 rgba(3, 36, 224, 0.274);
+  border-radius: 5px;
 }
 
 .contact .info i {
@@ -861,14 +864,14 @@ section {
   font-size: 22px;
   font-weight: 600;
   margin-bottom: 5px;
-  color: #050d18;
+  color: #fff;
 }
 
 .contact .info p {
   padding: 0 0 10px 60px;
   margin-bottom: 20px;
   font-size: 14px;
-  color: #173b6c;
+  color: #9098a3;
 }
 
 .contact .info .email p {
@@ -909,8 +912,9 @@ section {
 .contact .php-email-form {
   width: 100%;
   padding: 30px;
-  background: #fff;
-  box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.12);
+  background: #1d1d1d;
+  box-shadow: 0 0 24px 0 rgba(3, 36, 224, 0.274);
+  border-radius: 5px;
 }
 
 .contact .php-email-form .form-group {
@@ -1105,9 +1109,9 @@ section {
 }
 
 .blog-title{
-  font-size: 26px;
+  font-size: 20px;
 }
 .blog-title:hover{
-  color:#1252ac !important;
-  transition: all 0.5s ease-in-out;
+  color:#37b3ed !important;
+  transition: all 0.2s ease-in-out;
 }
