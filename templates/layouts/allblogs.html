@@ -1,0 +1,45 @@
+{% extends 'layouts/base.html' %}
+{% block content %}
+<main id="main">
+    <section id="blog " class="services allmain">
+        <div class="container">
+          <div class="section-title">
+            <h2>Blogs</h2>
+            
+            {% comment %} <p>
+              Magnam dolores commodi suscipit. Necessitatibus eius consequatur
+              ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam
+              quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea.
+              Quia fugiat sit in iste officiis commodi quidem hic quas.
+            </p> {% endcomment %}
+          </div>
+    
+          <div class="row">
+            {% for blog in blogs %}
+            <div class="col-lg-3 col-md-6 icon-box" data-aos="fade-up">
+              <div
+                style="
+                  background-color: #1d1d1d;
+                  border-top: 2px solid {{blog.category.color_code}} ;
+                "
+                class="p-3"
+              >
+                <div>
+                  <h6 style="color: {{blog.category.color_code}};letter-spacing:0.2rem;">{{blog.category}}</h6>
+                  <p class="py-1"><a href="{% url 'detail' blog.slug %}" class="text-white blog-title">{{blog.title | truncatechars:50}}</a></p>
+                  <p class="text-white">{{blog.short_content.html|safe}}</p>
+                  <div style="max-height:200px;overflow:hidden;"><img
+                    src="{{blog.image.url}}"
+                    class="img-fluid"
+                    alt=""
+                  /></div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+            
+          </div>
+        </div>
+      </section> 
+</main>
+{% endblock content %}

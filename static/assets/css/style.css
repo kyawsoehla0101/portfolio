@@ -1115,3 +1115,6 @@ section {
   color:#37b3ed !important;
   transition: all 0.2s ease-in-out;
 }
+.allmain{
+  height: 100vh !important;
+}
