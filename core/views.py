@@ -39,3 +39,6 @@ def categorypost(request,slug):
     categories = Category.objects.all().annotate(posts_count=Count('blog'))
     context = {'categories':categories,'blogs':blogs,'slug':slug}
     return render(request,'layouts/categorypost.html',context)
+
+def error_404(request,exception):
+    return render(request,'layouts/404.html')
