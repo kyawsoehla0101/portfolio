@@ -1,4 +1,4 @@
-{% extends 'layouts/main.html' %} {% load static %} {% block content %}
+{% extends 'layouts/main.html' %} {% load static %}{% block title %}{{blog.title}}{% endblock title %} {% block content %}
 <main id="main">
   <!-- ======= Breadcrumbs ======= -->
   <section id="breadcrumbs" class="breadcrumbs">
@@ -18,7 +18,7 @@
   <section id="portfolio-details" class="portfolio-details">
     <div class="container">
       <div class="row gy-4">
-        <a href="{% url 'home' %}"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" style="fill: #37b3ed;transform: ;msFilter:;"><path d="M21 11H6.414l5.293-5.293-1.414-1.414L2.586 12l7.707 7.707 1.414-1.414L6.414 13H21z"></path></svg> Back to blog</a>
+        <a href="{% url 'allblog' %}" class="fw-bold"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" style="fill: #37b3ed;transform: ;msFilter:;"><path d="M21 11H6.414l5.293-5.293-1.414-1.414L2.586 12l7.707 7.707 1.414-1.414L6.414 13H21z"></path></svg> Back to blog</a>
         <div class="col-lg-8">
           <div class="portfolio-details-slider swiper">
             <div class="swiper-wrapper align-items-center">
