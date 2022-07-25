@@ -177,7 +177,7 @@ class Gallery(models.Model):
     updated = models.DateTimeField(auto_now=True,null=True,blank=True)
 
     class Meta:
-        ordering = ('-created',)
+        ordering = ('year',)
         verbose_name = 'Gallery'
         verbose_name_plural = 'Gallery'
     
