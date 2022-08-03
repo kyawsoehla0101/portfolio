@@ -3,85 +3,140 @@
 * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
-*/const canvas = document.getElementById("canvas");
-const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-let spots = [];
-let hue = 0;
+*/
+//******************BUBBLES ON MOUSE TAIL*******************
 
-const mouse = {
-    x: undefined,
-    y: undefined,
-}
-canvas.addEventListener('mousemove', function (event) {
-    mouse.x = event.x;
-    mouse.y = event.y;
-    for (let i = 0; i < 3; i++) {
-        spots.push(new Particle());
-    }
-});
-class Particle{
-    constructor() {
-        this.x = mouse.x;
-        this.y = mouse.y;
-        this.size = Math.random() * 2 + 0.1;
-        this.speedX = Math.random() * 2 - 1;
-        this.speedY = Math.random() * 2 - 1;
-        this.color = 'hsl(' + hue + ', 100%,70%)';
-    }
-    update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-        if (this.size > 0.2) this.size  -= 0.01;
-    }
-    draw() {
-        ctx.fillStyle = this.color;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-    }
-}
-function handleParticle() {
-    for (let i = 0; i < spots.length; i++) {
-        spots[i].update();
-        spots[i].draw();
-        for (let j = i; j < spots.length; j++) {
-            const dx = spots[i].x - spots[j].x;
-            const dy = spots[i].y - spots[j].y;
-            const distance = Math.sqrt(dx * dx + dy * dy);
-            if (distance <90) {
-                ctx.beginPath();
-                ctx.strokeStyle = spots[i].color;
-                ctx.linewidth = spots[i].size / 10;
-                ctx.moveTo(spots[i].x, spots[i].y);
-                ctx.lineTo(spots[j].x, spots[j].y);
-                ctx.stroke();
-            }
-            
-        }
-        if (spots[i].size <=0.3) {
-            spots.splice(i, 1);
-            i--;
-        }
-    }
-}
-function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    handleParticle();
-    hue++;
-    requestAnimationFrame(animate);
-}
+
+var canvas = document.querySelector('canvas');
+canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
+c = canvas.getContext('2d');
+
 window.addEventListener('resize', function () {
-    canvas.width = innerWidth;
-    canvas.height = innerHeight;
-    init();
-})
-window.addEventListener('mouseout', function () {
-    mouse.x = undefined;
-    mouse.y = undefined;
-})
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+
+    initCanvas();
+});
+if($(window).width() > 800) {
+var mouse = {
+    x: undefined,
+    y: undefined
+};
+window.addEventListener('mousemove',
+    function (event) {
+        mouse.x = event.x;
+        mouse.y = event.y;
+        drawCircles();
+    }
+);
+window.addEventListener("touchmove",
+    function (event) {
+        let touch = event.touches[0];
+        mouse.x = touch.clientX;
+        mouse.y = touch.clientY;
+        drawCircles();
+    }
+);
+
+function Circle(x, y, radius, vx, vy, rgb, opacity, birth, life) {
+    this.x = x;
+    this.y = y;
+    this.radius = radius;
+    this.minRadius = radius;
+    this.vx = vx;
+    this.vy = vy;
+    this.birth = birth;
+    this.life = life;
+    this.opacity = opacity;
+
+    this.draw = function () {
+        c.beginPath();
+        c.arc(this.x, this.y, this.radius, Math.PI * 2, false);
+        c.fillStyle = 'rgba(' + rgb + ',' + this.opacity + ')';
+        c.fill();
+    };
+
+    this.update = function () {
+        if (this.x + this.radius > innerWidth || this.x - this.radius < 0) {
+            this.vx = -this.vx;
+        }
+
+        if (this.y + this.radius > innerHeight || this.y - this.radius < 0) {
+            this.vy = -this.vy;
+        }
+
+        this.x += this.vx;
+        this.y += this.vy;
+
+        this.opacity = 1 - (((frame - this.birth) * 1) / this.life);
+
+        if (frame > this.birth + this.life) {
+            for (let i = 0; i < circleArray.length; i++) {
+                if (this.birth == circleArray[i].birth && this.life == circleArray[i].life) {
+                    circleArray.splice(i, 1);
+                    break;
+                }
+            }
+        } else {
+            this.draw();
+        }
+    }
+
+}
+
+var circleArray = [];
+
+function initCanvas() {
+    circleArray = [];
+}
+
+var colorArray = [
+    '355,85,80',
+    '9,80,100',
+    '343,81,45'
+]
+
+function drawCircles() {
+    for (let i = 0; i < 25; i++) {
+        let radius = Math.floor(Math.random() * 2) + 2;
+        let vx = (Math.random() * 2) - 1;
+        let vy = (Math.random() * 2) - 1;
+        let spawnFrame = frame;
+        let rgb = colorArray[Math.floor(Math.random() * colorArray.length)];
+        let life = 150;
+        circleArray.push(new Circle(mouse.x, mouse.y, radius, vx, vy, rgb, 1, spawnFrame, life));
+
+    }
+}
+
+var frame = 0;
+
+function animate() {
+    requestAnimationFrame(animate);
+    frame += 1;
+    c.clearRect(0, 0, innerWidth, innerHeight);
+    for (let i = 0; i < circleArray.length; i++) {
+        circleArray[i].update();
+    }
+
+}
+
+initCanvas();
 animate();
+
+// This is just for demo purposes :
+for (let i = 1; i < 110; i++) {
+    (function (index) {
+        setTimeout(function () {
+            mouse.x = 100 + i * 10;
+            mouse.y = 100;
+            drawCircles();
+        }, i * 10);
+    })(i);
+}
+}
+
 (function() {
   "use strict";
 
