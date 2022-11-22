@@ -19,7 +19,7 @@ filelock==3.7.1
 lxml==4.9.1
 markdown2==2.4.3
 mysqlclient==2.1.1
-Pillow==9.1.1
+Pillow==9.3.0
 platformdirs==2.5.2
 pyquery==1.4.3
 pytz==2022.1
